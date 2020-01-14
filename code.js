@@ -15,7 +15,27 @@ Things to work on
 
 1, list the possible selections The computer can select.(letters, number and special character)
 2. 
+table for charcode http://www.net-comber.com/charset.html
 */
+
+//dom Elements
+var resultEle = document.getElementById("result")
+var lengthEle = document.getElementById("length")
+var lowerCaseEle = document.getElementById("lowerCase")
+var upperCaseEle = document.getElementById("UpperCase")
+var numberEle = document.getElementById("number")
+var specialEle = document.getElementById("special")
+var generateEle = document.getElementById("generate")
+var clipBoardEle = document.getElementById("clipBoard")
+
+
+var generateRandomPassword = {
+    lower: generateRandomLower,
+    Upper: generateRandomUpper,
+    Number: generateNumber,
+    special: generateSpecialChara
+};
+
 
 //generate random lower
 function generateRandomLower() {
@@ -32,12 +52,8 @@ function generateRandomUpper() {
 function generateNumber() {
     return String.fromCharCode(Math.floor(Math.random()*10 +48));
 }
+//generate Special Characters
 function generateSpecialChara() {
     var special= "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
     return special[Math.floor(Math.random()*special.length)]
 }
-
-console.log(generateRandomLower());
-console.log(generateRandomUpper());
-console.log(generateNumber());
-console.log(generateSpecialChara());
