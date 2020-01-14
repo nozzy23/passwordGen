@@ -14,10 +14,30 @@ once the customer chose their criteria the generated password must appear on the
 Things to work on
 
 1, list the possible selections The computer can select.(letters, number and special character)
+2. 
 */
 
-var characterList=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+//generate random lower
+function generateRandomLower() {
+   return String.fromCharCode(Math.floor(Math.random()* 26 + 97));
+}
 
-var numberList=[1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
 
-var specialChoice=["!", "#", "$", "%", "&", " ' ", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^","_", "`", "{", "|", "}", "~"]
+//generate random upper
+function generateRandomUpper() {
+    return String.fromCharCode(Math.floor(Math.random()* 26 + 65));
+}
+
+//generate random number
+function generateNumber() {
+    return String.fromCharCode(Math.floor(Math.random()*10 +48));
+}
+function generateSpecialChara() {
+    var special= "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
+    return special[Math.floor(Math.random()*special.length)]
+}
+
+console.log(generateRandomLower());
+console.log(generateRandomUpper());
+console.log(generateNumber());
+console.log(generateSpecialChara());
