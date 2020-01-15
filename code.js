@@ -22,7 +22,7 @@ table for charcode http://www.net-comber.com/charset.html
 var resultEle = document.getElementById("result");
 var myRangeEle = document.getElementById("myRange");
 var lowerCaseEle = document.getElementById("lowerCase");
-var upperCaseEle = document.getElementById("UpperCase");
+var upperCaseEle = document.getElementById("upperCase");
 var numberEle = document.getElementById("number");
 var specialEle = document.getElementById("special");
 var generateEle = document.getElementById("generate");
@@ -40,7 +40,11 @@ generateEle.addEventListener("click", function range() {
     var length = +myRangeEle.value;
     document.getElementById("myRange").value;
     document.getElementById("demo").innerHTML = length;
-    console.log(length);
+    var hasLower = lowerCaseEle.checked;
+    var hasNumber = numberEle.checked;
+    var hasSpecial = specialEle.checked;
+    var hasUpper = upperCaseEle.checked;
+    console.log(hasLower, hasNumber, hasSpecial, hasUpper);
   });
   
 
