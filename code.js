@@ -18,24 +18,31 @@ Things to work on
 table for charcode http://www.net-comber.com/charset.html
 */
 
-//dom Elements
-var resultEle = document.getElementById("result")
-var lengthEle = document.getElementById("length")
-var lowerCaseEle = document.getElementById("lowerCase")
-var upperCaseEle = document.getElementById("UpperCase")
-var numberEle = document.getElementById("number")
-var specialEle = document.getElementById("special")
-var generateEle = document.getElementById("generate")
-var clipBoardEle = document.getElementById("clipBoard")
+//html Elements
+var resultEle = document.getElementById("result");
+var myRangeEle = document.getElementById("myRange");
+var lowerCaseEle = document.getElementById("lowerCase");
+var upperCaseEle = document.getElementById("UpperCase");
+var numberEle = document.getElementById("number");
+var specialEle = document.getElementById("special");
+var generateEle = document.getElementById("generate");
+var clipBoardEle = document.getElementById("clipBoard");
 
 
-var generateRandomPassword = {
+var randomFunc = {
     lower: generateRandomLower,
     Upper: generateRandomUpper,
     Number: generateNumber,
     special: generateSpecialChara
 };
 
+generateEle.addEventListener("click", function range() {
+    var length = +myRangeEle.value;
+    document.getElementById("myRange").value;
+    document.getElementById("demo").innerHTML = length;
+    console.log(length);
+  });
+  
 
 //generate random lower
 function generateRandomLower() {
@@ -56,4 +63,12 @@ function generateNumber() {
 function generateSpecialChara() {
     var special= "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
     return special[Math.floor(Math.random()*special.length)]
+}
+//slider function
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
 }
