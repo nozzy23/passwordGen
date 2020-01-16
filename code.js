@@ -1,52 +1,67 @@
-/*
-
-Will make a random password generator for the website. The customer will chose how specific they want their password. The customer must chose at least one.
-
-customer password must have between 8-128 characters. 
-It must contain a 
-captital letter,
-lower case letter,
-special character,
-and a number.
-
-once the customer chose their criteria the generated password must appear on the page (or alert)
-
-Things to work on
-
-1, list the possible selections The computer can select.(letters, number and special character)
-2. 
-table for charcode http://www.net-comber.com/charset.html
-*/
-
-//html Elements
-var resultEle = document.getElementById("result");
-var myRangeEle = document.getElementById("myRange");
-var lowerCaseEle = document.getElementById("lowerCase");
-var upperCaseEle = document.getElementById("upperCase");
-var numberEle = document.getElementById("number");
-var specialEle = document.getElementById("special");
-var generateEle = document.getElementById("generate");
-var clipBoardEle = document.getElementById("clipBoard");
+const resultEl = document.getElementById('result');
+const lengthEl = document.getElementById('length');
+const uppercaseEl = document.getElementById('uppercase');
+const lowercaseEl = document.getElementById('lowercase');
+const numbersEl = document.getElementById('numbers');
+const symbolsEl = document.getElementById('symbols');
+const generateEl = document.getElementById('generate');
+const clipboard = document.getElementById('clipboard');
 
 
-var randomFunc = {
-    lower: generateRandomLower,
-    Upper: generateRandomUpper,
-    Number: generateNumber,
-    special: generateSpecialChara
-};
+const randomFunc = {
+	lower: generateRandomLower,
+	upper: generateRandomUpper,
+	number: generateNumber,
+	symbol: generateSpecialChara
+}
 
-generateEle.addEventListener("click", function range() {
-    var length = +myRangeEle.value;
-    document.getElementById("myRange").value;
-    document.getElementById("demo").innerHTML = length;
-    var hasLower = lowerCaseEle.checked;
-    var hasNumber = numberEle.checked;
-    var hasSpecial = specialEle.checked;
-    var hasUpper = upperCaseEle.checked;
-    console.log(hasLower, hasNumber, hasSpecial, hasUpper);
-  });
-  
+clipboard.addEventListener('click', () => {
+	const textarea = document.createElement("password");
+	const password = resultEl.innerText;
+	
+	if(!password) { return; }
+	
+	textarea.value = password;
+	document.body.appendChild(textarea);
+	textarea.select();
+	document.execCommand('copy');
+	textarea.remove();
+	alert('Password copied to clipboard');
+});
+
+generate.addEventListener('click', () => {
+	const length = +lengthEl.value;
+	const hasLower = lowercaseEl.checked;
+	const hasUpper = uppercaseEl.checked;
+	const hasNumber = numbersEl.checked;
+	const hasSymbol = symbolsEl.checked;
+	
+	resultEl.innerText = generatePassword(hasLower, hasUpper, hasNumber, hasSymbol, length);
+});
+
+function generatePassword(lower, upper, number, symbol, length) {
+	let generatedPassword = '';
+	const typesCount = lower + upper + number + symbol;
+	const typesArr = [{lower}, {upper}, {number}, {symbol}].filter(item => Object.values(item)[0]);
+	
+	// Doesn't have a selected type
+	if(typesCount === 0) {
+		return '';
+	}
+	
+	// create a loop
+	for(let i=0; i<length; i+=typesCount) {
+		typesArr.forEach(type => {
+			const funcName = Object.keys(type)[0];
+			generatedPassword += randomFunc[funcName]();
+		});
+	}
+	
+	const finalPassword = generatedPassword.slice(0, length);
+	
+	return finalPassword;
+}
+
 
 //generate random lower
 function generateRandomLower() {
@@ -67,12 +82,4 @@ function generateNumber() {
 function generateSpecialChara() {
     var special= "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
     return special[Math.floor(Math.random()*special.length)]
-}
-//slider function
-var slider = document.getElementById("myRange");
-var output = document.getElementById("demo");
-output.innerHTML = slider.value;
-
-slider.oninput = function() {
-  output.innerHTML = this.value;
 }
