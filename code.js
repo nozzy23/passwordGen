@@ -27,10 +27,19 @@ generateEle.addEventListener("click", function(){
     var hasUpper = upperCaseEle.checked;
     var hasNumber = numberEle.checked;
     var hasSymbols = symbolEle.checked;
-    console.log(hasLower, hasUpper, hasNumber, hasSymbols)
+    //this will generate password into the result element in HTML
+    resultEle.innerText = generatePassword(hasLower, hasUpper, hasNumber, hasSymbols)
 });
 
+// the function to generate the password
+function generatePassword(lower, upper, number, symbols, length) {
 
+// will begin building my password with empty string that we will add on.    
+    var generatedPassword = "";
+// checks to see if its checked or not
+    var typesCount = lower + upper + number + symbols
+    console.log("how many boxes are checked", typesCount);
+}
 
 // http://www.net-comber.com/charset.html
 //generate random lower
