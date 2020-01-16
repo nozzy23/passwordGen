@@ -17,7 +17,18 @@ var randomFunction = {
     symbols: generateSpecialChara,
 }
 
-// When clicking generate button the button will display a password
+// When clicking generate button, will display a password
+
+generateEle.addEventListener("click", function(){
+// to change string to number put a + (or wrap in parsint) before lengthele    
+    var length = +lengthEle.value;
+//when logging this will show if box is checked. if checked true, not checked false
+    var hasLower = lowerCaseEle.checked;
+    var hasUpper = upperCaseEle.checked;
+    var hasNumber = numberEle.checked;
+    var hasSymbols = symbolEle.checked;
+    console.log(hasLower, hasUpper, hasNumber, hasSymbols)
+});
 
 
 
