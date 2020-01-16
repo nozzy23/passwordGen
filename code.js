@@ -19,8 +19,8 @@ var randomFunction = {
 
 // When clicking generate button, will display a password
 
-generateEle.addEventListener("click", function(){
-// to change string to number put a + (or wrap in parsint) before lengthele    
+generate.addEventListener("click", function(){
+// to change string to number put a + (or wrap in parsint) before lengthele  
     var length = +lengthEle.value;
 //when logging this will show if box is checked. if checked true, not checked false
     var hasLower = lowerCaseEle.checked;
@@ -28,18 +28,51 @@ generateEle.addEventListener("click", function(){
     var hasNumber = numberEle.checked;
     var hasSymbols = symbolEle.checked;
     //this will generate password into the result element in HTML
-    resultEle.innerText = generatePassword(hasLower, hasUpper, hasNumber, hasSymbols)
+    resultEle.innerText = generatePassword(
+    hasLower, 
+    hasUpper, 
+    hasNumber, 
+    hasSymbols,
+    length
+  );
 });
 
 // the function to generate the password
 function generatePassword(lower, upper, number, symbols, length) {
 
 // will begin building my password with empty string that we will add on.    
-    var generatedPassword = "";
+    var generatedPassword = " ";
 // checks to see if its checked or not
-    var typesCount = lower + upper + number + symbols
-    console.log("how many boxes are checked", typesCount);
+    var typesCount = lower + upper + number + symbols;
+
+    //console.log("how many boxes are checked", typesCount);
+// to get the key (basically checking if its true or false) we need to put the index in {}
+// not 100% sure how the filter method works, ???
+    var typesArr = [{lower}, {upper}, {number}, {symbols}].filter(item => Object.values(item)[0]);
+
+console.log("putting the value into a list", typesArr);
+
+// if statement to not generate password if none of the boxes are checked.
+if (typesCount === 0) {
+    return " ";
 }
+
+// loop over the length input and call the function to generate each string
+// Need help understanding this for loop?? 
+    for (var i=0; i < length; i += typesCount) {
+        typesArr.forEach(type => {
+    // need help understanding this function.
+        var funcName = Object.keys(type)[0];
+
+     console.log(funcName);
+
+        generatedPassword += randomFunction[funcName]();
+    });
+}
+ let finalPassword = (generatedPassword.slice(0, length));
+ return finalPassword;
+}
+
 
 // http://www.net-comber.com/charset.html
 //generate random lower
