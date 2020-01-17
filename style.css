@@ -103,6 +103,25 @@
         transition: transform .2s;
         
     }
+    #copy {
+        background-color: #3B3B98;
+        color: #fff;
+        font-size: 16px;
+        letter-spacing: 1.1px;
+        width: 80%;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        margin: auto;
+        margin-left: 25px;
+        cursor: pointer;
+        transition: transform .2s;
+    }
+    #generate:hover {
+        transform: scale(1.02);
+        transition: transform .2s;
+        
+    }
     /*--- media queries ---   */
     
     @media screen and (max-width: 800px) { 

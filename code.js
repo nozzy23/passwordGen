@@ -40,21 +40,20 @@ generate.addEventListener("click", function(){
 // function to copy password
 
 copyEle.addEventListener('click', () => {
-	var textarea = document.createElement("textarea");
-	var password = resultEle.innerText;
+	const textarea = document.createElement('textarea');
+	const password = copyEle.innerText;
 	
     if(!password) 
     { 
-        return; 
+       return;
     }
 	
 	textarea.value = password;
 	document.body.appendChild(textarea);
 	textarea.select();
-	document.execCommand('copy');
+	document.execCommand( "copy" );
 	textarea.remove();
-    alert("copied password");
-    
+	alert('Copied password!');
 });
 
 // the function to generate the password
@@ -70,7 +69,7 @@ function generatePassword(lower, upper, number, symbols, length) {
 // not 100% sure how the filter method works, ???
     var typesArr = [{lower}, {upper}, {number}, {symbols}].filter(item => Object.values(item)[0]);
 
-console.log("putting the value into a list", typesArr);
+//console.log("putting the value into a list", typesArr);
 
 // if statement to not generate password if none of the boxes are checked.
 if (typesCount === 0) {
@@ -84,7 +83,7 @@ if (typesCount === 0) {
     // need help understanding this function.
         var funcName = Object.keys(type)[0];
 
-     console.log(funcName);
+     //console.log(funcName);
 
         generatedPassword += randomFunction[funcName]();
     });
