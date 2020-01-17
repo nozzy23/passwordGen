@@ -37,6 +37,26 @@ generate.addEventListener("click", function(){
   );
 });
 
+// function to copy password
+
+copyEle.addEventListener('click', () => {
+	var textarea = document.createElement("textarea");
+	var password = resultEle.innerText;
+	
+    if(!password) 
+    { 
+        return; 
+    }
+	
+	textarea.value = password;
+	document.body.appendChild(textarea);
+	textarea.select();
+	document.execCommand('copy');
+	textarea.remove();
+    alert("copied password");
+    
+});
+
 // the function to generate the password
 function generatePassword(lower, upper, number, symbols, length) {
 
@@ -69,7 +89,9 @@ if (typesCount === 0) {
         generatedPassword += randomFunction[funcName]();
     });
 }
+//need to learn what slicing does.
  let finalPassword = (generatedPassword.slice(0, length));
+
  return finalPassword;
 }
 

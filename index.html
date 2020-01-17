@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="style.css"/>
   </head>
   <body>
+
     <!--wrapper is the div that is wrapping the entire box of password-->
-    <div class="wrapper">
+    <div class="content-wrap content">
       <header>
         <h1>Password Generator</h1>
       </header>
@@ -19,39 +20,39 @@
         </div>
         
     <!--user input length of password-->
-        <div class="settings">
+        <div class="content content-wrap">
           <div class="setting"></div>
             <label>Password length</label>
             <input type="number" id="length" min='8' max='128' value='20'/>
           </div>
 
     <!-- include Upper case in password-->
-        <div class="setting">
+    <div class="content content-wrap">
           <label>Include uppercase letters</label> 
           <input type="checkbox" id="uppercase" checked />
         </div>
 
         <!-- include lowerCase in password-->
-        <div class="setting">
+        <div class="content content-wrap">
           <label>Include lowercase letters</label> 
           <input type="checkbox" id="lowercase" checked />
         </div>
 
     <!-- include numbers in password-->
-        <div class="setting">
+    <div class="content content-wrap">
           <label>Include numbers</label> 
           <input type="checkbox" id="numbers" checked />
         </div>
 
     <!-- include symbol in password-->
-        <div class="setting">
+    <div class="content content-wrap">
           <label>Include symbols</label> 
           <input type="checkbox" id="symbols" checked />
         </div>
         </div>
 
     <!-- text input where the password will appear-->
-        <div class="card-body">
+    <div class="result">
           <textarea
             readonly
             id="password"
@@ -61,14 +62,21 @@
         </div>
 
     <!-- button to generate password-->  
-        <div class="card-footer">
+        <div class="generate content content-wrap">
           <button id="generate" class="btn">Generate Password</button>
           
         </div>
-        <button class="btn" id="copy"> copy </button>
         
+    <!-- button to copy password-->
+        <div class="card-footer">
+          <button id="copy" class="btn"> Copy Password</button>
+          
+        </div>
+
       </div>
     </div>
+
+  
     <script src="code.js"></script>
   </body>
 </html>
